@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #image {
+            width: 100%;
+            height: 300px;
+            line-height: 300px;
+            background-color: #ccc;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .gallery img {
+            width: 150px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="initializeGallery()">
+
+    <h1>Accessible Interactive Photo Gallery</h1>
+
+    <div id="image">Hover over an image below to display here.</div>
+
+    <div class="gallery">
+        <figure>
+            <img src="image1.jpg" alt="Description of Image 1" onmouseover="upDate(this)" onmouseleave="unDo()"
+                 onfocus="upDate(this)" onblur="unDo()">
+        </figure>
+        <figure>
+            <img src="image2.jpg" alt="Description of Image 2" onmouseover="upDate(this)" onmouseleave="unDo()"
+                 onfocus="upDate(this)" onblur="unDo()">
+        </figure>
+        <figure>
+            <img src="image3.jpg" alt="Description of Image 3" onmouseover="upDate(this)" onmouseleave="unDo()"
+                 onfocus="upDate(this)" onblur="unDo()">
+        </figure>
+        <figure>
+            <img src="image4.jpg" alt="Description of Image 4" onmouseover="upDate(this)" onmouseleave="unDo()"
+                 onfocus="upDate(this)" onblur="unDo()">
+        </figure>
+        <figure>
+            <img src="image5.jpg" alt="Description of Image 5" onmouseover="upDate(this)" onmouseleave="unDo()"
+                 onfocus="upDate(this)" onblur="unDo()">
+        </figure>
+        <figure>
+            <img src="image6.jpg" alt="Description of Image 6" onmouseover="upDate(this)" onmouseleave="unDo()"
+                 onfocus="upDate(this)" onblur="unDo()">
+        </figure>
+    </div>
+
+    <script>
+        function upDate(previewPic) {
+            console.log("Event triggered: Mouse over or focus");
+
+            let displayDiv = document.getElementById("image");
+            displayDiv.innerHTML = previewPic.alt;
+            displayDiv.style.backgroundImage = `url('${previewPic.src}')`;
+            displayDiv.style.backgroundSize = "cover";
+            displayDiv.style.color = "white";
+        }
+
+        function unDo() {
+            console.log("Event triggered: Mouse leave or blur");
+
+            let displayDiv = document.getElementById("image");
+            displayDiv.innerHTML = "Hover over an image below to display here.";
+            displayDiv.style.backgroundImage = "none";
+            displayDiv.style.color = "black";
+        }
+
+        function initializeGallery() {
+            console.log("Page loaded: Adding tabindex to images");
+
+            let images = document.querySelectorAll(".gallery img");
+            for (let img of images) {
+                img.setAttribute("tabindex", "0");
+            }
+        }
+    </script>
+
+</body>
+</html>
